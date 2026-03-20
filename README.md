@@ -14,7 +14,7 @@ This project demonstrates several core Operating System concepts, including:
 [2]Architecture
 The system follows a pipeline architecture:
 Sensor → Processor → Display → Logger
-                     +----------------------+
+                                          +----------------------+
                      |   Supervisor (Main)  |
                      |   (Process Control)  |
                      +----------+-----------+
@@ -27,20 +27,17 @@ Sensor → Processor → Display → Logger
 |  sensor.c   |   | process.c   |   | display.c   |   | logger.c    |
 +------+------+   +------+------+   +------+------+   +------+------+
        |                 |                 |                  |
-       |                 |                 |                  |
-       |     Message     |   Shared        |    Pipe /        |
-       |     Queue       |   Memory        |    Signals       |
+       | Message Queue   | Shared Memory   | Pipe / Signals   |
        v                 v                 v                  v
 
 +------------------------------------------------------------------+
 |            POSIX IPC COMMUNICATION LAYER                          |
 |                                                                  |
-|   ✔ Message Queue   → Sensor → Processor Communication           |
-|   ✔ Shared Memory   → Fast Data Sharing                          |
-|   ✔ Semaphore       → Synchronization / Data Safety              |
-|   ✔ Pipe + Signals  → Alerts & Notifications                     |
+| ✔ Message Queue   → Sensor → Processor Communication             |
+| ✔ Shared Memory   → Fast Data Sharing                            |
+| ✔ Semaphore       → Synchronization / Data Safety                |
+| ✔ Pipe + Signals  → Alerts & Notifications                       |
 +------------------------------------------------------------------+
-Sensor → generates data
     ↓
 Message Queue → transfers data
     ↓
