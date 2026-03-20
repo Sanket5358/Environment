@@ -12,44 +12,8 @@ This project demonstrates several core Operating System concepts, including:
 * Modular software design
 
 [2]Architecture
-The system follows a pipeline architecture:
-Sensor → Processor → Display → Logger
-                                          +----------------------+
-                     |   Supervisor (Main)  |
-                     |   (Process Control)  |
-                     +----------+-----------+
-                                |
-      --------------------------------------------------------
-      |                 |                 |                  |
-      v                 v                 v                  v
-+-------------+   +-------------+   +-------------+   +-------------+
-|   Sensor    |   |  Processor  |   |   Display   |   |   Logger    |
-|  sensor.c   |   | process.c   |   | display.c   |   | logger.c    |
-+------+------+   +------+------+   +------+------+   +------+------+
-       |                 |                 |                  |
-       | Message Queue   | Shared Memory   | Pipe / Signals   |
-       v                 v                 v                  v
+<img width="1024" height="1536" alt="image" src="https://github.com/user-attachments/assets/0ab2325a-44bf-477d-86c2-f06b2d40fe8a" />
 
-+------------------------------------------------------------------+
-|            POSIX IPC COMMUNICATION LAYER                          |
-|                                                                  |
-| ✔ Message Queue   → Sensor → Processor Communication             |
-| ✔ Shared Memory   → Fast Data Sharing                            |
-| ✔ Semaphore       → Synchronization / Data Safety                |
-| ✔ Pipe + Signals  → Alerts & Notifications                       |
-+------------------------------------------------------------------+
-    ↓
-Message Queue → transfers data
-    ↓
-Processor → processes data
-    ↓
-Shared Memory → stores data
-    ↓
-Display → shows + detects alerts
-    ↓
-Pipe → sends data
-    ↓
-Logger → writes to file
     ↓
 File → permanent storage
 fork + exec → create processes  
